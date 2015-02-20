@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="http://angular-ui.github.com/ng-grid/css/ng-grid.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+  <script type="text/javascript" src="http://angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
+  <link href="style.css" rel="stylesheet" />
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="tableExpandCollapseApp">
+  <h1>Table (ng-grid) that supports expand and collapse!</h1>
+  <div ng-controller="tableExpandCollapseController">
+    <!--
+    <span>
+      Data: {{selItems}}
+    </span>
+    <br/>
+    <hr/>
+    <button ng-click="toggleDisplay('Fruit')">Display </button> above data in table!
+    <hr/>
+    -->
+    <table>
+    <thead>
+    <tr>
+    <td> &nbsp; </td>
+    <td> Name </td>
+    <td> Quantity </td>
+    <td> Type </td>
+    <td> Cost </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="si in selItems">
+    <td> <div ng-if="si.Summary"> <button ng-click="toggleDisplay(si.Type)">{{si.Summary}} </button> </div> </td> 
+    <td> {{si.Name}} </td>
+    <td> {{si.Quantity}} </td>
+    <td> {{si.Type}} </td>
+    <td> {{si.Cost}} </td>
+    </tr>
+    </tbody>
+    </table>
+
+    <div class="gridStyle" ng-grid="gridOptions"></div>
+  </div>
+</body>
+
+</html>

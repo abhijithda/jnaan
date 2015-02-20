@@ -1,0 +1,23 @@
+    {
+      "Items": [{
+        "Name": "Fruits",
+        "Type": "Fruit",
+        "Quantity": 5,
+        "Cost": 10
+      }, {
+        "Name": "Vegetables",
+        "Type": "Vegetable",
+        "Quantity": 2,
+        "Cost": 5
+      }, {
+        "Name": "Pulses",
+        "Type": "Pulse",
+        "Quantity": 2,
+        "Cost": 40
+      }, {
+        "Name": "Drinks",
+        "Type": "Drink",
+        "Quantity": 4,
+        "Cost": 20
+      }]
+    }

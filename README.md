@@ -1,1 +1,25 @@
-# jnaan
+Allow expand/collapse of rows of a table in order to view/hide details. When a row is expanded, new rows will show up the details of the expanded row.
+
+Example: 
+
+Below table that shows the overview
+
+ 	Name 	Quantity 	Type 	Cost
++	Fruits 	5 	Fruit 	10
++	Vegetables 	2 	Vegetable 	5
++	Pulses 	2 	Pulse 	40
++	Drinks 	4 	Drink 	20
+	
+
+Below table that shows the details of Fruits item when '+' of the Fruits row is clicked.
+
+
+  Name 	Quantity 	Type 	Cost
+-	Fruits 	5 	Fruit 	10
+	Banana 	2 	Fruit 	1
+	Apple 	2 	Fruit 	4
+	Pomogrande 	1 	Fruit 	5
++	Vegetables 	2 	Vegetable 	5
++	Pulses 	2 	Pulse 	40
++	Drinks 	4 	Drink 	20
+
