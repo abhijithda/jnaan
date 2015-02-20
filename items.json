@@ -3,21 +3,55 @@
         "Name": "Fruits",
         "Type": "Fruit",
         "Quantity": 5,
-        "Cost": 10
+        "Cost": 10,
+        "Details": [{
+          "Name": "Banana",
+          "Type": "Fruit",
+          "Quantity": 2,
+          "Cost": 1
+        }, {
+          "Name": "Apple",
+          "Type": "Fruit",
+          "Quantity": 2,
+          "Cost": 4
+        }, {
+          "Name": "Pomogrande",
+          "Type": "Fruit",
+          "Quantity": 1,
+          "Cost": 5
+        }]
       }, {
         "Name": "Vegetables",
         "Type": "Vegetable",
         "Quantity": 2,
-        "Cost": 5
+        "Cost": 5,
+        "Details": []
       }, {
         "Name": "Pulses",
         "Type": "Pulse",
         "Quantity": 2,
-        "Cost": 40
+        "Cost": 40,
+        "Details": []
       }, {
         "Name": "Drinks",
         "Type": "Drink",
         "Quantity": 4,
-        "Cost": 20
+        "Cost": 20,
+        "Details": [{
+          "Name": "Water",
+          "Type": "Drink",
+          "Quantity": 2,
+          "Cost": 1
+        }, {
+          "Name": "Coconut Water",
+          "Type": "Drink",
+          "Quantity": 2,
+          "Cost": 4
+        }, {
+          "Name": "Pomogrande Juice",
+          "Type": "Drink",
+          "Quantity": 1,
+          "Cost": 5
+        }]
       }]
     }
