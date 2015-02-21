@@ -4,6 +4,8 @@ Allow expand/collapse of rows of a table in order to view/hide details. When a r
 
 
 # Example: 
+plnkr [here](http://plnkr.co/edit/RgfI1cinuHPOtpTbMT7u?p=preview).
+
 
 Below table that shows the overview:
 
@@ -27,3 +29,5 @@ Below table that shows the details of Fruits item when '+' of the Fruits row is 
 [+](# expand)|Vegetables |  2    |  Vegetable | 5                                                               
 [+](# expand)|Pulses |  2        |  Pulse |    40                                                               
 [+](# expand)|Drinks |  4        |  Drink |    20
+
+

@@ -82,14 +82,17 @@ app.controller('tableExpandCollapseController',
     });
 
 
+
+    var summaryCellTemplate = "<div ng-if='row.getProperty(col.field)'>" +
+      "<button ng-click='toggleDisplay(row.entity.Type)'> {{row.getProperty(col.field)}} </button>" +
+      "</div>";
+
     $scope.gridOptions = {
       data: 'selItems',
       columnDefs: [{
         field: 'Summary',
         displayName: '',
-        cellTemplate: "<div ng-if='row.getProperty(col.field)'>" +
-          "<button ng-click='toggleDisplay(row.entity.Type)'> {{row.getProperty(col.field)}} </button>" +
-          "</div>",
+        cellTemplate: summaryCellTemplate,
         width: 30
       }, {
         field: 'Name',
@@ -109,5 +112,3 @@ app.controller('tableExpandCollapseController',
     };
 
   });
-  
-  
