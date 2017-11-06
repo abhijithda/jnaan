@@ -28,3 +28,11 @@ Clicking `+` on the `Fruits` row shows it's details as can be seen in the below 
 |[+](# expand)|Vegetables |  2    |  Vegetable | 5
 |[+](# expand)|Pulses |  2        |  Pulse |    40
 |[+](# expand)|Drinks |  4        |  Drink |    20
+
+---
+
+<p align="center">
+<img alt="Expand and Collapse Table Rows" src=img/expandtable.gif>
+</p>
+
+---
