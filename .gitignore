@@ -3,6 +3,7 @@ algos/golang/bin/*
 algos/golang/pkg/*
 golang/bin/*
 golang/pkg/*
+log.txt
 *.log
 *.out
 *.out.dSYM/
