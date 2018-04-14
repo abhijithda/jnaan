@@ -7,3 +7,4 @@ log.txt
 *.log
 *.out
 *.out.dSYM/
+algos/golang/src/sampledb/sample.db
