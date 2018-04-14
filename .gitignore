@@ -1,4 +1,8 @@
 algos/c++/*/a.out
 algos/golang/bin/*
 algos/golang/pkg/*
-log.txt
+golang/bin/*
+golang/pkg/*
+*.log
+*.out
+*.out.dSYM/

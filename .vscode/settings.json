@@ -1,0 +1,5 @@
+{
+    "go.inferGopath": true,
+    "go.gopath": "/Users/abhijith.da/workspace/github/jnaan/golang",
+    "go.goroot": "/usr/local/go"
+}
