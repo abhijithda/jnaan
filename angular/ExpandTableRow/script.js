@@ -7,7 +7,7 @@ app.service('shoppingList', function($http, $q) {
     getShoppingList: function() {
       if (angular.isUndefined(items)) {
         items = {};
-        return $http.get('https://cdn.rawgit.com/abhijithda/jnaan/master/items.json').success(function(jsonData) {
+        return $http.get('https://cdn.rawgit.com/abhijithda/jnaan/master/angular/ExpandTableRow/items.json').success(function(jsonData) {
           items["Items"] = jsonData["Items"];
         });
       } else {
