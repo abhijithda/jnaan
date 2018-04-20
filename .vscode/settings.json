@@ -2,9 +2,4 @@
     "go.inferGopath": true,
     "go.gopath": "/Users/abhijith.da/workspace/github/jnaan/golang",
     "go.goroot": "/usr/local/go",
-    "files.associations": {
-        "iostream": "cpp",
-        "string": "cpp",
-        "vector": "cpp"
-    }
 }
