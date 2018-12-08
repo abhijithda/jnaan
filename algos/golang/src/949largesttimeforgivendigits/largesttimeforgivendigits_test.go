@@ -67,6 +67,13 @@ func Test_largestTimeFromDigits(t *testing.T) {
 			},
 			want: "03:00",
 		},
+		{
+			name: "Example 9",
+			args: args{
+				A: []int{1, 9, 6, 0},
+			},
+			want: "19:06",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -3,8 +3,164 @@ package largesttimeforgivendigits
 import (
 	"fmt"
 	"log"
+	"os"
 	"sort"
+	"strconv"
 )
+
+const logFile = "log.txt"
+
+func init() {
+	f, err := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Printf("Error opening file: %v", err)
+		return
+	}
+	// defer f.Close()
+	log.SetOutput(f)
+}
+
+func getCombinations(ele string, A []int) []string {
+	log.Printf("Got ele: %s; A: %+v", ele, A)
+	if len(A) == 0 {
+		log.Println("Got combination:", ele)
+		return []string{ele}
+	}
+	var neweles []string
+	newelelist := map[string]int{}
+
+	for i := range A {
+		newList := []int{}
+		if i == 0 {
+			newList = A[i+1:]
+		} else if i == len(A) {
+			newList = A[0:i]
+		} else {
+			newList = append(newList, A[0:i]...)
+			newList = append(newList, A[i+1:len(A)]...)
+		}
+
+		newele1 := getCombinations(ele+strconv.Itoa(A[i]), newList)
+		log.Println("Left combination:", newele1)
+		if len(newele1) != 0 && len(newele1[0]) == 4 {
+			log.Println("Appending Left combination:", newele1)
+			for n := range newele1 {
+				newelelist[newele1[n]] = 1
+			}
+		}
+		newele2 := getCombinations(strconv.Itoa(A[i])+ele, newList)
+		log.Println("Left-Right combination:", newele2)
+		if len(newele2) != 0 && len(newele2[0]) == 4 {
+			log.Println("Appending Left-Right combination:", newele2)
+			for n := range newele2 {
+				newelelist[newele2[n]] = 1
+			}
+		}
+	}
+	for k := range newelelist {
+		neweles = append(neweles, k)
+	}
+	log.Printf("Returning %d combinations: %+v", len(neweles), neweles)
+	return neweles
+}
+
+func largestTimeFromDigits(A []int) string {
+	largestTime := ""
+	largestTimeinmm := 0
+
+	combs := getCombinations("", A)
+	// combs := getDigitCombinations(A)
+
+	for q := range combs {
+		timenum, _ := strconv.ParseInt(combs[q], 10, 0)
+		hh := int(timenum) / 100
+		mm := int(timenum) % 100
+		if hh > 23 || mm > 59 {
+			continue
+		}
+		ntime := fmt.Sprintf("%02d:%02d", hh, mm)
+		if largestTimeinmm <= (hh*60)+mm {
+			largestTimeinmm = (hh * 60) + mm
+			largestTime = ntime
+		}
+	}
+	return largestTime
+}
+
+// func getDigitCombinations(A []int) []string {
+// 	combs := []string{}
+// 	combs = append(combs, getCombinations("", A)...)
+// 	log.Println("All digit combinations:", combs)
+// 	return combs
+// }
+
+// func getDigitCombinationsOld(A []int) []string {
+// 	combs := []string{}
+
+// 	for i := range A {
+// 		newList := []int{}
+// 		if i == 0 {
+// 			newList = A[i+1:]
+// 		} else if i == len(A) {
+// 			newList = A[0 : i-1]
+// 		} else {
+// 			newList = append(newList, A[0:i]...)
+// 			newList = append(newList, A[i+1:len(A)]...)
+// 		}
+
+// 		log.Println(">>>>> Sending new list:", newList)
+// 		combs = append(combs, getCombinations(strconv.Itoa(A[i]), newList)...)
+// 		// combs = append(combs, getComb(true, strconv.Itoa(A[i]), newList)...)
+// 		// combs = append(combs, getComb(false, strconv.Itoa(A[i]), newList)...)
+// 	}
+
+// 	log.Println("All digit combinations:", combs)
+// 	return combs
+// }
+
+/*
+	1. Form all combinations of given digits as a string.
+	2. Validate whether these strings are valid time, and determine their mins value.
+	3. Return string with max minutes value.
+*/
+func largestTimeFromDigitsBug(A []int) string {
+	largestTime := ""
+	largestTimeinmm := 0
+	log.Println("Given digits:", A)
+	forms := []string{}
+	for i := range A {
+		queue := []string{strconv.Itoa(A[i])}
+		log.Println("Initiliazing queue with", queue)
+		for j := (i + 1) % len(A); j != i; j = (j + 1) % len(A) {
+			eles := queue
+			queue = []string{}
+			for k := range eles {
+				ele := eles[k]
+				queue = append(queue, ele+strconv.Itoa(A[j]), strconv.Itoa(A[j])+ele)
+				// queue = queue[1:]
+				log.Println("Appended elements to queue:", queue)
+			}
+		}
+		for q := range queue {
+			timenum, _ := strconv.ParseInt(queue[q], 10, 0)
+			hh := int(timenum) / 100
+			mm := int(timenum) % 100
+			if hh > 23 || mm > 59 {
+				continue
+			}
+			ntime := fmt.Sprintf("%02d:%02d", hh, mm)
+			forms = append(forms, ntime)
+			if largestTimeinmm <= (hh*60)+mm {
+				largestTimeinmm = (hh * 60) + mm
+				largestTime = ntime
+			}
+		}
+	}
+
+	log.Printf("Valid Forms: %+v\n", forms)
+	log.Printf("Largest time: %+v\n", largestTime)
+	return largestTime
+}
 
 /*
 	1. Initialize Queue with specified digits (A[]).
@@ -15,7 +171,7 @@ import (
 	5. If new element is lesser, and if it doesn't contain 4 digits, then add it back to Queue.
 	6. If new element is lesser, and if it contain 4 digits, then return that element.
 */
-func largestTimeFromDigits(A []int) string {
+func largestTimeFromDigitsMLE(A []int) string {
 	log.Println("Given digits:", A)
 	time := ""
 
