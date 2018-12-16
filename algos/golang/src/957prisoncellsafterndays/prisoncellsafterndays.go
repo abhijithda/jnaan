@@ -21,6 +21,9 @@ func init() {
 func prisonAfterNDays(cells []int, N int) []int {
 	log.Printf("\n\nGiven cells: %+v, N: %d\n", cells, N)
 	cellDays := map[int][]int{}
+	// While the modulo base is chosen as 14 based on observation in output.
+	// As to determining modulo base is not very clear, we can check the map to see if
+	// the value already exists. If so, the cycle has started, and we can break the loop...
 	n := N % 14
 	if n == 0 {
 		n = 14
