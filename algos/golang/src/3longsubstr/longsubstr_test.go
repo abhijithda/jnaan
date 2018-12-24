@@ -1,48 +1,62 @@
 package longsubstr
 
-import "testing"
-import "fmt"
+import (
+	"testing"
+)
 
 func Test_lengthOfLongestSubstring(t *testing.T) {
+	type args struct {
+		s string
+	}
 	tests := []struct {
-		description string
-		str         string
-		len         int
+		name string
+		args args
+		want int
 	}{
 		{
-			description: "Null string",
+			name: "Null string",
 		},
 		{
-			description: "Single char",
-			str:         "a",
-			len:         1,
+			name: "Single char",
+			args: args{
+				s: "a",
+			},
+			want: 1,
 		},
 		{
-			description: "3 continous char",
-			str:         "abcabcbb",
-			len:         3,
+			name: "3 continous char",
+			args: args{
+				s: "abcabcbb",
+			},
+			want: 3,
 		},
 		{
-			description: "One char repeated",
-			str:         "bbbbb",
-			len:         1,
+			name: "One char repeated",
+			args: args{
+				s: "bbbbb",
+			},
+			want: 1,
 		},
 		{
-			description: "3 chars in b/n",
-			str:         "pwwkew",
-			len:         3,
+			name: "3 chars in b/n",
+			args: args{
+				s: "pwwkew",
+			},
+			want: 3,
 		},
 		{
-			description: "3 chars in b/n starting previous match",
-			str:         "dvdf",
-			len:         3,
+			name: "3 chars in b/n starting previous match",
+			args: args{
+				s: "dvdf",
+			},
+			want: 3,
 		},
 	}
-	for _, tc := range tests {
-		fmt.Println(tc.description)
-		l := lengthOfLongestSubstring(tc.str)
-		if l != tc.len {
-			t.Errorf("got %v, want %v", l, tc.len)
-		}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := lengthOfLongestSubstring(tt.args.s); got != tt.want {
+				t.Errorf("lengthOfLongestSubstring() = %v, want %v", got, tt.want)
+			}
+		})
 	}
 }

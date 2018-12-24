@@ -1,29 +1,25 @@
 package longsubstr
 
+import "log"
+
 func lengthOfLongestSubstring(s string) int {
-	l := 0
-	ll := 0
-	sp := &s
-
-	var charExists = map[string]int{}
+	log.Println("Given s:", s)
+	maxlen := 0
 	for i := 0; i < len(s); i++ {
-		c := (*sp)[i : i+1]
-		// log.Printf("Char at %v is %v\n", i, c)
-		if _, ok := charExists[c]; ok {
-			if ll < l {
-				ll = l
+		present := map[string]bool{string(s[i]): true}
+		j := i + 1
+		for ; j < len(s); j++ {
+			if _, ok := present[string(s[j])]; ok {
+				log.Printf("%s repeated at %d & %d", string(s[i]), i, j)
+				break
+			} else {
+				present[string(s[j])] = true
 			}
-			for k := range charExists {
-				delete(charExists, k)
-			}
-			l = 0
 		}
-		charExists[c] = 1
-		l++
+		if maxlen < j-i {
+			maxlen = j - i
+			log.Println("Longest string:", s[i:j], i, j)
+		}
 	}
-	if ll < l {
-		ll = l
-	}
-
-	return ll
+	return maxlen
 }
