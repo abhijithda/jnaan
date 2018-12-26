@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	tree "internal/tree"
 )
 
 const logFile = "log.txt"
@@ -19,13 +21,12 @@ func init() {
 }
 
 // TreeNode is the definition of a node in a binary tree node.
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
-// type TreeNode itu.TreeNode
+// type TreeNode struct {
+// 	Val   int
+// 	Left  *TreeNode
+// 	Right *TreeNode
+// }
+type TreeNode = tree.Node
 
 func createMBTree(nums []int, root *TreeNode, left bool) *TreeNode {
 	log.Printf("Arguments nums: %+v, root: %+v", nums, root)
@@ -75,6 +76,6 @@ func constructMaximumBinaryTree(nums []int) *TreeNode {
 
 	root := createMBTree(nums, nil, true)
 	log.Println("Root: ", root)
-	// itu.DisplayTree(root)
+	// tree.DisplayTree(root)
 	return root
 }

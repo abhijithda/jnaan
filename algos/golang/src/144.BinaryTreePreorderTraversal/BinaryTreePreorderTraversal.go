@@ -2,9 +2,10 @@ package binarytreepreordertraversal
 
 import (
 	"fmt"
-	itu "internal/treeutils"
 	"log"
 	"os"
+
+	tree "internal/tree"
 )
 
 const logFile = "log.txt"
@@ -19,8 +20,11 @@ func init() {
 	log.SetOutput(f)
 }
 
+// TreeNode is the defintion of node in a binary tree.
+type TreeNode = tree.Node
+
 // Recursive
-func preorderTraversalRecursive(root *itu.TreeNode) []int {
+func preorderTraversalRecursive(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
 	}
@@ -37,13 +41,13 @@ func preorderTraversalRecursive(root *itu.TreeNode) []int {
 }
 
 // Iterative
-func preorderTraversal(root *itu.TreeNode) []int {
+func preorderTraversal(root *TreeNode) []int {
 	log.Println("\n\n\nGiven root:", root)
 	if root == nil {
 		return []int{}
 	}
-	stack := []*itu.TreeNode{root}
-	visited := map[*itu.TreeNode]bool{}
+	stack := []*TreeNode{root}
+	visited := map[*TreeNode]bool{}
 	preorder := []int{}
 	log.Println("preorder:", preorder)
 	log.Println("stack:", stack)
@@ -55,18 +59,18 @@ func preorderTraversal(root *itu.TreeNode) []int {
 		}
 		if trav.Left != nil && visited[trav.Left] != true {
 			tstack := stack
-			stack = []*itu.TreeNode{trav.Left}
+			stack = []*TreeNode{trav.Left}
 			stack = append(stack, tstack...)
 		} else {
 			if len(stack) > 1 {
 				stack = stack[1:]
 			} else {
-				stack = []*itu.TreeNode{}
+				stack = []*TreeNode{}
 			}
 			if trav.Right != nil &&
 				visited[trav.Right] != true {
 				tstack := stack
-				stack = []*itu.TreeNode{trav.Right}
+				stack = []*TreeNode{trav.Right}
 				stack = append(stack, tstack...)
 			}
 		}

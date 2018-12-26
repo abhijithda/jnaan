@@ -1,23 +1,23 @@
-package treeutils
+package tree
 
 import "log"
 
-// TreeNode is definition of node in a binary tree node.
-type TreeNode struct {
+// Node is definition of node in a binary tree.
+type Node struct {
 	Val   int
-	Left  *TreeNode
-	Right *TreeNode
+	Left  *Node
+	Right *Node
 }
 
 // DisplayTree displays tree from the given node
-func DisplayTree(t *TreeNode) {
+func DisplayTree(t *Node) {
 	log.Println("\n\n ---Display")
 	visited := map[int]bool{}
 	if t == nil {
 		log.Println("Empty tree!")
 		return
 	}
-	stack := []*TreeNode{t}
+	stack := []*Node{t}
 	log.Println("Root:", t.Val)
 	for len(stack) != 0 {
 		log.Println("Stack: ", stack)
@@ -25,7 +25,7 @@ func DisplayTree(t *TreeNode) {
 		tstack := stack
 		if n.Left != nil && !visited[n.Left.Val] {
 			log.Println("Left: ", n.Left.Val)
-			stack = []*TreeNode{n.Left}
+			stack = []*Node{n.Left}
 			// stack = append(stack, n.Left)
 			stack = append(stack, tstack...)
 		} else if n.Right != nil && !visited[n.Right.Val] {
@@ -33,7 +33,7 @@ func DisplayTree(t *TreeNode) {
 			// Pop n
 			tstack = popStack(tstack)
 			visited[n.Val] = true
-			stack = []*TreeNode{n.Right}
+			stack = []*Node{n.Right}
 			stack = append(stack, tstack...)
 		} else if !visited[n.Val] {
 			log.Println("Leaf: ", n.Val)
@@ -44,22 +44,23 @@ func DisplayTree(t *TreeNode) {
 	}
 }
 
-func popStack(stack []*TreeNode) []*TreeNode {
+// popStack TODO: removes & returns the first element if present from the stack.
+func popStack(stack []*Node) []*Node {
 	if len(stack) > 1 {
 		return stack[1:]
 	}
-	return []*TreeNode{}
+	return []*Node{}
 }
 
 // PrepareTree prepares a tree from an array.
 // 	To specify nil in integer list, specify `-1` in it's place.
 // TODO:
 // 	Currently doesn't handle case of all left nodes or all right nodes scenario!
-func PrepareTree(nodesval []int) *TreeNode {
+func PrepareTree(nodesval []int) *Node {
 	log.Println("\n\n ---Preparing Tree for", nodesval)
-	var root, trav *TreeNode
+	var root, trav *Node
 
-	level := []*TreeNode{}
+	level := []*Node{}
 	for i, nv := range nodesval {
 		if nv == -1 {
 			if (i+1)%2 == 1 {
@@ -68,7 +69,7 @@ func PrepareTree(nodesval []int) *TreeNode {
 			}
 			continue
 		}
-		node := TreeNode{Val: nv}
+		node := Node{Val: nv}
 		if len(level) == 0 {
 			root = &node
 			log.Println("Root:", nv)
