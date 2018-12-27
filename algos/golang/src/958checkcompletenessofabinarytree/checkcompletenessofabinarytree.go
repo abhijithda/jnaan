@@ -3,14 +3,17 @@ package checkcompletenessofabinarytree
 import (
 	"log"
 	"math"
+
+	"internal/tree"
 )
 
 // TreeNode structure below is a definition for a binary tree node.
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+// type TreeNode struct {
+// 	Val   int
+// 	Left  *TreeNode
+// 	Right *TreeNode
+// }
+type TreeNode = tree.Node
 
 func isCompleteTree(root *TreeNode) bool {
 	log.Println("\n\n\nGiven root:", root)

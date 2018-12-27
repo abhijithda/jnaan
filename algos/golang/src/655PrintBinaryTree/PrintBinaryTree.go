@@ -5,11 +5,12 @@ import (
 	"log"
 	"math"
 	"os"
+
+	"internal/tree"
 )
 
-const logFile = "log.txt"
-
 func init() {
+	const logFile = "log.txt"
 	f, err := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Printf("Error opening file: %v", err)
@@ -20,11 +21,12 @@ func init() {
 }
 
 // TreeNode is definition of node in a binary tree node.
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+// type TreeNode struct {
+// 	Val   int
+// 	Left  *TreeNode
+// 	Right *TreeNode
+// }
+type TreeNode = tree.Node
 
 func getHeight(root *TreeNode) int {
 	if root == nil {

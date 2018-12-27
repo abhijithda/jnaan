@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	tree "internal/tree"
+	"internal/tree"
 )
 
 const logFile = "log.txt"
@@ -68,14 +68,12 @@ func createMBTree(nums []int, root *TreeNode, left bool) *TreeNode {
 
 func constructMaximumBinaryTree(nums []int) *TreeNode {
 	log.Println("\n\n\nGiven nums:", nums)
-	// var root *TreeNode
-
 	if len(nums) == 0 {
 		return nil
 	}
 
 	root := createMBTree(nums, nil, true)
 	log.Println("Root: ", root)
-	// tree.DisplayTree(root)
+	// tree.Display(root)
 	return root
 }
