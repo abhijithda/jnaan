@@ -2,21 +2,22 @@ package leafsimilartrees
 
 import (
 	"fmt"
+	"internal/tree"
 	"log"
 	"os"
 	"reflect"
 )
 
 // TreeNode is the definition for a binary tree node.
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
-const logFile = "log.txt"
+// type TreeNode struct {
+// 	Val   int
+// 	Left  *TreeNode
+// 	Right *TreeNode
+// }
+type TreeNode = tree.Node
 
 func init() {
+	const logFile = "log.txt"
 	f, err := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Printf("Error opening file: %v", err)
