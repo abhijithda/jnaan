@@ -1,51 +1,8 @@
 package consecutivenumberssum
 
 import (
-	"fmt"
 	"testing"
 )
-
-func Test_consecutiveNumbersSumOld(t *testing.T) {
-	tests := []struct {
-		description   string
-		num           int
-		sumVariations int
-	}{
-		{
-			description:   "5 is 2",
-			num:           5,
-			sumVariations: 2,
-		},
-		{
-			description:   "9 is 3",
-			num:           9,
-			sumVariations: 3,
-		},
-		{
-			description:   "15 is 4",
-			num:           15,
-			sumVariations: 4,
-		},
-		{
-			description:   "933320757 is 16",
-			num:           933320757,
-			sumVariations: 16,
-		},
-		{
-			description:   "855877922 is 4",
-			num:           855877922,
-			sumVariations: 4,
-		},
-	}
-
-	for _, tc := range tests {
-		fmt.Println("Testing...:", tc.description)
-		res := consecutiveNumbersSum(tc.num)
-		if res != tc.sumVariations {
-			t.Errorf("got %v, want %v for %v", res, tc.sumVariations, tc.num)
-		}
-	}
-}
 
 func Test_consecutiveNumbersSum(t *testing.T) {
 	type args struct {
