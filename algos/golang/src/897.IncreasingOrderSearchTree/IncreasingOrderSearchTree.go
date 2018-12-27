@@ -2,7 +2,7 @@ package increasingordersearchtree
 
 import (
 	"fmt"
-	it "internal/tree"
+	"internal/tree"
 	"log"
 	"os"
 )
@@ -24,7 +24,7 @@ func init() {
 // 	Left  *TreeNode
 // 	Right *TreeNode
 // }
-type TreeNode = it.Node
+type TreeNode = tree.Node
 
 // Iterative solution
 func increasingBSTOld(root *TreeNode) *TreeNode {
@@ -73,7 +73,7 @@ func increasingBSTOld(root *TreeNode) *TreeNode {
 		// log.Println("New trav:", nroot)
 	}
 
-	it.DisplayTree(newroot)
+	tree.Display(newroot)
 	return newroot
 }
 
@@ -114,7 +114,7 @@ func increasingBST(root *TreeNode) *TreeNode {
 		}
 	}
 
-	it.DisplayTree(nroot)
+	tree.Display(nroot)
 	log.Println("\n-----")
 	return nroot
 }

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	tree "internal/tree"
+	"internal/tree"
 )
 
 func Test_constructMaximumBinaryTree(t *testing.T) {
@@ -21,35 +21,35 @@ func Test_constructMaximumBinaryTree(t *testing.T) {
 			args: args{
 				nums: []int{3, 2, 1, 6, 0, 5},
 			},
-			want: tree.PrepareTree([]int{6, 3, 5, -1, 2, 0, -1, -1, 1}),
+			want: tree.Create([]int{6, 3, 5, -1, 2, 0, -1, -1, 1}),
 		},
 		{
 			name: "Example 2",
 			args: args{
 				nums: []int{2, 3},
 			},
-			want: tree.PrepareTree([]int{3, 2}),
+			want: tree.Create([]int{3, 2}),
 		},
 		{
 			name: "Example 3",
 			args: args{
 				nums: []int{3, 2},
 			},
-			want: tree.PrepareTree([]int{3, -1, 2}),
+			want: tree.Create([]int{3, -1, 2}),
 		},
 		{
 			name: "Example 4",
 			args: args{
 				nums: []int{1},
 			},
-			want: tree.PrepareTree([]int{1}),
+			want: tree.Create([]int{1}),
 		},
 		{
 			name: "Example 5",
 			args: args{
 				nums: []int{},
 			},
-			want: tree.PrepareTree([]int{}),
+			want: tree.Create([]int{}),
 		},
 	}
 	for _, tt := range tests {

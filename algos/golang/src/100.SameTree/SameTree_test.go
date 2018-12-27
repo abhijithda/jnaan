@@ -18,32 +18,32 @@ func Test_isSameTree(t *testing.T) {
 		{
 			name: "Example 1",
 			args: args{
-				p: tree.PrepareTree([]int{1, 2, 3}),
-				q: tree.PrepareTree([]int{1, 2, 3}),
+				p: tree.Create([]int{1, 2, 3}),
+				q: tree.Create([]int{1, 2, 3}),
 			},
 			want: true,
 		},
 		{
 			name: "Example 2",
 			args: args{
-				p: tree.PrepareTree([]int{1, 2}),
-				q: tree.PrepareTree([]int{1, -1, 2}),
+				p: tree.Create([]int{1, 2}),
+				q: tree.Create([]int{1, -1, 2}),
 			},
 			want: false,
 		},
 		{
 			name: "Example 3",
 			args: args{
-				p: tree.PrepareTree([]int{1, 2, 1}),
-				q: tree.PrepareTree([]int{1, 1, 2}),
+				p: tree.Create([]int{1, 2, 1}),
+				q: tree.Create([]int{1, 1, 2}),
 			},
 			want: false,
 		},
 		{
 			name: "Example 4",
 			args: args{
-				p: tree.PrepareTree([]int{}),
-				q: tree.PrepareTree([]int{}),
+				p: tree.Create([]int{}),
+				q: tree.Create([]int{}),
 			},
 			want: true,
 		},

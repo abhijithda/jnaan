@@ -9,37 +9,34 @@ type Node struct {
 	Right *Node
 }
 
-// DisplayTree displays tree from the given node
-func DisplayTree(t *Node) {
-	log.Println("\n\n ---Display")
-	visited := map[int]bool{}
+// Display displays tree from the given node
+func Display(t *Node) {
+	log.Println("\n\n\n----- Display -----")
 	if t == nil {
 		log.Println("Empty tree!")
 		return
 	}
-	stack := []*Node{t}
 	log.Println("Root:", t.Val)
+	stack := []*Node{t}
+	visited := map[*Node]bool{}
 	for len(stack) != 0 {
 		log.Println("Stack: ", stack)
 		n := stack[0]
-		tstack := stack
-		if n.Left != nil && !visited[n.Left.Val] {
-			log.Println("Left: ", n.Left.Val)
+		visited[n] = true
+		if n.Left != nil && !visited[n.Left] {
+			log.Println("Left: ", n.Left)
+			tstack := stack
 			stack = []*Node{n.Left}
-			// stack = append(stack, n.Left)
 			stack = append(stack, tstack...)
-		} else if n.Right != nil && !visited[n.Right.Val] {
-			log.Println("Right: ", n.Right.Val)
+		} else {
 			// Pop n
-			tstack = popStack(tstack)
-			visited[n.Val] = true
-			stack = []*Node{n.Right}
-			stack = append(stack, tstack...)
-		} else if !visited[n.Val] {
-			log.Println("Leaf: ", n.Val)
-			// Pop n
-			stack = popStack(tstack)
-			visited[n.Val] = true
+			stack = popStack(stack)
+			if n.Right != nil && !visited[n.Right] {
+				log.Println("Right: ", n.Right)
+				tstack := stack
+				stack = []*Node{n.Right}
+				stack = append(stack, tstack...)
+			}
 		}
 	}
 }
@@ -52,12 +49,10 @@ func popStack(stack []*Node) []*Node {
 	return []*Node{}
 }
 
-// PrepareTree prepares a tree from an array.
+// Create prepares a tree from an array which is in BFS order.
 // 	To specify nil in integer list, specify `-1` in it's place.
-// TODO:
-// 	Currently doesn't handle case of all left nodes or all right nodes scenario!
-func PrepareTree(nodesval []int) *Node {
-	log.Println("\n\n ---Preparing Tree for", nodesval)
+func Create(nodesval []int) *Node {
+	log.Println("\n\n----- Creating Tree for", nodesval)
 	var root, trav *Node
 
 	level := []*Node{}
@@ -88,6 +83,6 @@ func PrepareTree(nodesval []int) *Node {
 		level = append(level, &node)
 	}
 
-	DisplayTree(root)
+	Display(root)
 	return root
 }
