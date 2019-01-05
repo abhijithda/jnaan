@@ -10,9 +10,3 @@ func twoSum(nums []int, target int) []int {
 	}
 	return []int{}
 }
-
-// func main() {
-// 	list1 := []int{1, 2, 3}
-// 	target := 3
-// 	fmt.Println(twoSum(list1, target))
-// }
