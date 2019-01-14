@@ -36,6 +36,14 @@ func Test_subarraysDivByK(t *testing.T) {
 			},
 			want: 108696,
 		},
+		{
+			name: "Example 4",
+			args: args{
+				A: []int{4, 5, 0},
+				K: 5,
+			},
+			want: 3,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
