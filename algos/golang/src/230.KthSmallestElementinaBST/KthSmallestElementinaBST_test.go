@@ -31,6 +31,14 @@ func Test_kthSmallest(t *testing.T) {
 			},
 			want: 3,
 		},
+		{
+			name: "Example 3",
+			args: args{
+				root: tree.Create([]int{3, 1, 4, -1, 2}),
+				k:    4,
+			},
+			want: 4,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
