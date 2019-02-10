@@ -8,22 +8,9 @@ import (
 	"log"
 	"math"
 	"sort"
-)
 
-func nCr(n, r int) int {
-	val := 1
-	// In this problem, r is one of 1,2,3... so, use n-r as that'll bigger
-	// 	number compared r to avoid lot of multiplications. (Otherwise,
-	//  	we would have to find whether r or n-r is bigger.)
-	for c := (n - r) + 1; c <= n; c++ {
-		val *= c
-	}
-	for r > 1 {
-		val /= r
-		r--
-	}
-	return val
-}
+	mu "internal/mathutils"
+)
 
 func threeSumMulti(A []int, target int) int {
 	// log.Printf("\n\n\nGiven A: %v; target: %d", A, target)
@@ -42,14 +29,14 @@ func threeSumMulti(A []int, target int) int {
 	for d, c := range cntD {
 		if c >= 3 {
 			if 3*d == target {
-				count += nCr(c, 3)
+				count += mu.NCR(c, 3)
 				log.Printf("d1:%d; d2:%d; d3:%d; Count:%d", d, d, d, count)
 			}
 		}
 		if c >= 2 {
 			d3 := target - 2*d
 			if d3 != d && cntD[d3] > 0 {
-				count += nCr(c, 2) * nCr(cntD[d3], 1)
+				count += mu.NCR(c, 2) * mu.NCR(cntD[d3], 1)
 				log.Printf("d1:%d; d2:%d; d3:%d; Count:%d", d, d, d3, count)
 			}
 		}
@@ -63,7 +50,7 @@ func threeSumMulti(A []int, target int) int {
 			d3 := target - d1 - d2
 			if d3 > d2 && cntD[d3] > 0 {
 				// if d1 != d && d != d3 && cntD[d3] > 0 {
-				count += nCr(cntD[d1], 1) * nCr(cntD[d2], 1) * nCr(cntD[d3], 1)
+				count += mu.NCR(cntD[d1], 1) * mu.NCR(cntD[d2], 1) * mu.NCR(cntD[d3], 1)
 				// log.Printf("d1:%d; d2:%d; d3:%d; Count:%d", d1, d2, d3, count)
 			}
 		}
