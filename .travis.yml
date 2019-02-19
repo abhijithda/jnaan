@@ -5,7 +5,10 @@ go:
   - tip
 
 before_install:
-  - go get -t -v ./...
+  - ls
+  # - go get -t -v ./...
+
+go_import_path: github.com/abhijithda/jnaan/algos/golang
 
 script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic
