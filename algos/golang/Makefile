@@ -155,7 +155,6 @@ test: .unit_tests
 		$(GO_TOOLS_BIN)/gocov convert cover.out | $(GO_TOOLS_BIN)/gocov-xml > go-coverage-$$d.xml; \
 		rm -rf $${COVER_DIR}/* cover.out; \
 	done ; \
-	export INTEGRATION_TEST=DONE; \
 	if [ $${test_failed} -ne 0 ]; then \
 		@echo "Go unit tests failed."; \
 		exit 1; \
