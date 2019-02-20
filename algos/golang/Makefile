@@ -5,9 +5,9 @@ GOPATH=$(TOP)
 GOSRC=$(GOPATH)/src
 GOBIN=$(TOP)/bin
 
-# GO_SRC_DIRS=$(sort $(dir $(shell cd $(GOSRC) && find . -name *.go)))
-GO_SRC_DIRS := 0linkedlistloop
-GO_SRC_DIRS += 1twosum
+GO_SRC_DIRS=$(sort $(dir $(shell cd $(GOSRC) && find . -name *.go)))
+# GO_SRC_DIRS := 0linkedlistloop
+# GO_SRC_DIRS += 1twosum
 
 GO_DEPS_PATH=$(TOP)/.godeps
 GO_DEPS_BIN=$(GO_TOOLS_PATH)/bin
