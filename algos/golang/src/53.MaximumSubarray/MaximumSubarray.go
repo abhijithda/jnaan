@@ -1,6 +1,21 @@
 package maximumsubarray
 
-import "log"
+import (
+	"fmt"
+	"log"
+	"os"
+)
+
+func init() {
+	const logFile = "log.txt"
+	f, err := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Printf("Error opening file: %v", err)
+		return
+	}
+	// defer f.Close()
+	log.SetOutput(f)
+}
 
 func maxSubArray(nums []int) int {
 	log.Println("Given nums:", nums)
