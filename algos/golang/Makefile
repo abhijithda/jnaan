@@ -5,7 +5,11 @@ GOPATH=$(TOP)
 GOSRC=$(GOPATH)/src
 GOBIN=$(TOP)/bin
 
-GO_SRC_DIRS=$(sort $(dir $(shell cd $(GOSRC) && find . -name *.go)))
+# GO_SRC_DIRS=$(sort $(dir $(shell cd $(GOSRC) && find . -name *.go)))
+GO_SRC_DIRS := $(shell \
+	cd $(GOSRC) && find . -name "*.go" -not -path "./vendor/*" | \
+	xargs -I {} dirname {}  | \
+	uniq)
 # GO_SRC_DIRS := 0linkedlistloop
 # GO_SRC_DIRS += 1twosum
 
