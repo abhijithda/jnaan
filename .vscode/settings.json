@@ -1,5 +1,0 @@
-{
-    "go.inferGopath": true,
-    "go.goroot": "/usr/local/go",
-    "python.pythonPath": "/usr/local/bin/python3.6",
-}
