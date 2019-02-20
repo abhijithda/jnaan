@@ -1,11 +1,11 @@
 algos/c++/*/a.out
 algos/golang/bin/*
+algos/golang/.godeps/*
+algos/golang/.gotools/*
 algos/golang/pkg/*
-golang/bin/*
-golang/pkg/*
+golang/*
 log.txt
+*.db
 *.log
 *.out
 *.out.dSYM/
-algos/golang/.gotools/*
-algos/golang/src/sampledb/sample.db
