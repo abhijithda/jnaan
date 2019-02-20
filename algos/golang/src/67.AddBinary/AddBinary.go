@@ -1,10 +1,23 @@
 package addbinary
 
 import (
+	"fmt"
 	"log"
+	"os"
 	"strconv"
 	"strings"
 )
+
+func init() {
+	const logFile = "log.txt"
+	f, err := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Printf("Error opening file: %v", err)
+		return
+	}
+	// defer f.Close()
+	log.SetOutput(f)
+}
 
 func addBinary(a string, b string) string {
 	log.Printf("Given a: %s; b:%s", a, b)
