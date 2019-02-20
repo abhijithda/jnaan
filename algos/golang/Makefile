@@ -136,16 +136,14 @@ test: .unit_tests
 	@echo "Running Go unit tests...: $(GO_SRC_DIRS)"
 	export GOPATH=$(GOPATH):$(GO_DEPS_PATH); \
 	cd $(GOPATH)/src; \
+	COVER_DIR=$(GOPATH)/cover; \
+	rm -rf $${COVER_DIR}; \
+	mkdir -p $${COVER_DIR}; \
 	test_failed=0; \
 	for d in $(GO_SRC_DIRS); do \
-		echo "TEST_BEGIN: $$d"; \
+		echo "TEST_BEGIN: $${d}"; \
 		go test -v --cover -covermode=count -coverprofile=$${COVER_DIR}/$$d.out $$d/... | \
 			$(GO_TOOLS_BIN)/go-junit-report > TEST-$$d.xml; \
-		ret=$${PIPESTATUS[0]}; \
-		if [ $${ret} -ne 0 ]; then \
-			echo "Go unit test failed for $${d}."; \
-			test_failed=1; \
-		fi ; \
 		echo "TEST_END($${ret}): $${d}"; \
 	done ; \
 	if [ $${test_failed} -ne 0 ]; then \
