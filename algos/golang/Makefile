@@ -137,20 +137,15 @@ test: .unit_tests
 	@echo "Running Go unit tests...: $(GO_SRC_DIRS)"
 	export GOPATH=$(GOPATH):$(GO_DEPS_PATH); \
 	cd $(GOPATH)/src; \
-	COVER_DIR=$(GOPATH)/cover; \
-	rm -rf $${COVER_DIR}; \
-	mkdir -p $${COVER_DIR}; \
-	test_failed=0; \
+	echo "" > coverage.txt; \
 	for d in $(GO_SRC_DIRS); do \
 		echo "TEST_BEGIN: $${d}"; \
-		go test -v --cover -covermode=count -coverprofile=$${COVER_DIR}/$$d.out $$d/... | \
-			$(GO_TOOLS_BIN)/go-junit-report > TEST-$$d.xml; \
+		go test -v --cover -covermode=count -coverprofile=profile.out $${d}/...; \
+		ret=$$?; \
+        cat profile.out >> coverage.txt; \
+        rm profile.out; \
 		echo "TEST_END($${ret}): $${d}"; \
-	done ; \
-	if [ $${test_failed} -ne 0 ]; then \
-		@echo "Go unit tests failed."; \
-		exit 1; \
-	fi
+	done;
 
 .test_go_backup:
 	@echo "Running Go unit tests...: $(GO_SRC_DIRS)"
