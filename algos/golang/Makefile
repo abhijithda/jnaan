@@ -130,6 +130,10 @@ clean: .clean_go
 	done;
 	@rm -rf $(GO_TOOLS_PATH)
 
+.PHONY: show
+show:
+	@echo "SRC  = $(GO_SRC_DIRS)"
+
 .PHONY: test
 test: .unit_tests
 
