@@ -2,7 +2,7 @@ language: go
 
 go:
   - 1.11.x
-  - tip
+  # - tip
 
 before_install:
   - ls
