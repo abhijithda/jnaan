@@ -1,6 +1,21 @@
 package subarraysumsdivisiblebyk
 
-import "log"
+import (
+	"fmt"
+	"log"
+	"os"
+)
+
+func init() {
+	const logFile = "log.txt"
+	f, err := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Printf("Error opening file: %v", err)
+		return
+	}
+	// defer f.Close()
+	log.SetOutput(f)
+}
 
 // Solution: https://leetcode.com/problems/subarray-sums-divisible-by-k/discuss/217985/JavaC%2B%2B-Count-the-Remainder
 func subarraysDivByK(A []int, K int) int {
