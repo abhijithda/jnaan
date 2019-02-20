@@ -18,6 +18,7 @@ GO_TOOLS_BIN=$(GO_TOOLS_PATH)/bin
 GO_TOOLS := github.com/axw/gocov/gocov
 GO_TOOLS += github.com/AlekSi/gocov-xml
 GO_TOOLS += github.com/jstemmer/go-junit-report
+GO_TOOLS += golang.org/x/lint/golint
 GO_TOOLS += github.com/golang/lint/golint
 
 
