@@ -10,7 +10,7 @@ before_install:
 
 # go_import_path: github.com/abhijithda/jnaan/algos/golang
 
-# script:
+script: make all
 #   - go test -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:

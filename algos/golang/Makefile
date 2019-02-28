@@ -1,3 +1,9 @@
+# A Self-Documenting Makefile: http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
+.DEFAULT_GOAL := help
+.PHONY: help
+help:	## Display this help message.
+	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
 TOP=$(shell pwd)
 
 # Go build related variables
@@ -27,11 +33,11 @@ GO_TOOLS += github.com/golang/lint/golint
 
 
 .PHONY: all
-all: build test
+all: build test		## Perform build & test
 
 
 .PHONY: build
-build: .build_dep_go .build_go
+build: .build_dep_go .build_go	## Build source code
 
 .PHONY: .build_dep_go
 .build_dep_go:
@@ -79,15 +85,15 @@ build: .build_dep_go .build_go
 
 
 .PHONY: analyze
-analyze: .go_tools .gofmt .golint .govet
+analyze: .go_tools gofmt golint govet go-race  ## Analyze source code for different errors through gofmt, golint, govet, go-race
 
-.PHONY: .golint
-.golint:
+.PHONY: golint
+golint:	## golint
 	@echo Checking Go code for lint errors...
 	$(GO_TOOLS_BIN)/golint -set_exit_status ./...
 
-.PHONY: .gofmt
-.gofmt:
+.PHONY: gofmt
+gofmt:	## gofmt
 	@echo Checking Go code for format errors...
 	fmterrs=`gofmt -l . 2>&1`; \
 	if [ "$$fmterrs" ]; then \
@@ -96,14 +102,14 @@ analyze: .go_tools .gofmt .golint .govet
 		exit 1; \
 	fi
 
-.PHONY: .govet
-.govet:
+.PHONY: govet
+govet:	## Vet Go source code for errors
 	@echo Vetting Go code for errors...
 	go tool vet -all -shadow .
 
 
 .PHONY: clean
-clean: .clean_go
+clean: .clean_go	## clean
 
 .PHONY: .clean_go
 .clean_go:
@@ -131,17 +137,17 @@ clean: .clean_go
 	@rm -rf $(GO_TOOLS_PATH)
 
 .PHONY: show
-show:
+show:	## show source directories
 	@echo "SRC  = $(GO_SRC_DIRS)"
 
 .PHONY: test
-test: .unit_tests
+test: .unit_tests	## Run all tests
 
 .PHONY: .unit_tests
-.unit_tests: .go_tools .test_go
+.unit_tests: .go_tools test_go
 
-.PHONY: .test_go
-.test_go:
+.PHONY: test_go
+test_go:	## Run go tests
 	@echo "Running Go unit tests...: $(GO_SRC_DIRS)"
 	export GOPATH=$(GOPATH):$(GO_DEPS_PATH); \
 	cd $(GOPATH)/src; \
@@ -154,33 +160,5 @@ test: .unit_tests
         rm profile.out; \
 		echo "TEST_END($${ret}): $${d}"; \
 	done;
-
-.test_go_backup:
-	@echo "Running Go unit tests...: $(GO_SRC_DIRS)"
-	export GOPATH=$(GOPATH):$(GO_DEPS_PATH); \
-	cd $(GOPATH)/src; \
-	COVER_DIR=$(GOPATH)/cover; \
-	rm -rf $${COVER_DIR}; \
-	mkdir -p $${COVER_DIR}; \
-	test_failed=0; \
-	for d in $(GO_SRC_DIRS); do \
-		echo "TEST_BEGIN: $$d"; \
-		go test -v --cover -covermode=count -coverprofile=$${COVER_DIR}/$$d.out $$d/... | \
-			$(GO_TOOLS_BIN)/go-junit-report > TEST-$$d.xml; \
-		ret=$${PIPESTATUS[0]}; \
-		if [ $${ret} -ne 0 ]; then \
-			echo "Go unit test failed for $$d."; \
-			test_failed=1; \
-		fi ; \
-		echo "TEST_END($${ret}): $$d"; \
-		awk -f $(GOPATH)/utils/gocoverage-collate.awk $${COVER_DIR}/* > cover.out; \
-		go tool cover -html=cover.out -o go-coverage-$$d.html; \
-		$(GO_TOOLS_BIN)/gocov convert cover.out | $(GO_TOOLS_BIN)/gocov-xml > go-coverage-$$d.xml; \
-		rm -rf $${COVER_DIR}/* cover.out; \
-	done ; \
-	if [ $${test_failed} -ne 0 ]; then \
-		@echo "Go unit tests failed."; \
-		exit 1; \
-	fi
 
 .NOTPARALLEL:
