@@ -6,7 +6,7 @@ help:	## Display this help message.
 
 TOP=$(shell pwd)
 
-SUBDIRS := algos/golang
+SUBDIRS := lcgo algos/golang
 
 .PHONY: all
 all: build test		## Perform build & test
