@@ -6,10 +6,13 @@ help:	## Display this help message.
 
 TOP=$(shell pwd)
 
-SUBDIRS := lcgo algos/golang
+SUBDIRS :=  
+# SUBDIRS += algos/golang
+SUBDIRS += lcgo 
 
 .PHONY: all
-all: build test		## Perform build & test
+all: test		## Perform test
+# all: build test		## Perform build & test
 
 .PHONY: build
 build: 	## Build source code

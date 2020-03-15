@@ -55,6 +55,6 @@ clean:	## clean
 test:	## Run all tests
 	@echo "Running Go unit tests..."
 	go test -v --cover -covermode=count -coverprofile=coverage.txt ./...;
-	/usr/bin/sed -i -e s%`go list -m all`/%%g coverage.txt
+	# /usr/bin/sed -i -e s%`go list -m all`/%%g coverage.txt
 
 .NOTPARALLEL:
