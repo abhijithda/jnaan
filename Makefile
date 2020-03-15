@@ -17,6 +17,12 @@ build: 	## Build source code
 		make -C $$d build; \
 	done
 
+.PHONY: clean
+clean:	## Clean build artifacts
+	for d in $(SUBDIRS); do\
+		make -C $$d clean; \
+	done
+	
 .PHONY: test
 test:	## Test source code
 	for d in $(SUBDIRS); do\

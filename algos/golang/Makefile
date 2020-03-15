@@ -116,6 +116,7 @@ clean: .clean_go	## clean
 	export GOPATH=$(GOPATH); \
 	export GOBIN=$(GOBIN); \
 	cd $(GOSRC); \
+	rm -f coverage.txt; \
 	for d in $(GO_SRC_DIRS); do \
 		go clean -i $$d; \
 		rm -f $$d/*.log; \

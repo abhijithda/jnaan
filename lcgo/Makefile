@@ -49,6 +49,7 @@ clean:	## clean
 	@echo "Cleaning Go binaries...: $(GO_SRC_DIRS) ";
 	go clean -i ./...;
 	rm -f */*.log;
+	rm -f coverage.txt;
 
 .PHONY: test
 test:	## Run all tests
