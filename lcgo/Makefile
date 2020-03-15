@@ -53,7 +53,6 @@ clean:	## clean
 .PHONY: test
 test:	## Run all tests
 	@echo "Running Go unit tests..."
-	-rm profile.out;
-	go test -v --cover -covermode=count -coverprofile=profile.out ./...;
+	go test -v --cover -covermode=count -coverprofile=coverage.txt ./...;
 
 .NOTPARALLEL:
