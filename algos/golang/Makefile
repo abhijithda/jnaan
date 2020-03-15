@@ -29,7 +29,6 @@ GO_TOOLS := github.com/axw/gocov/gocov
 GO_TOOLS += github.com/AlekSi/gocov-xml
 GO_TOOLS += github.com/jstemmer/go-junit-report
 GO_TOOLS += golang.org/x/lint/golint
-GO_TOOLS += github.com/golang/lint/golint
 
 
 .PHONY: all
@@ -69,7 +68,7 @@ build: .build_dep_go .build_go	## Build source code
 		echo "BUILD_END($${ret}): $$d"; \
 	done ; \
 	if [ $${build_failed} -ne 0 ]; then \
-		@echo "Failed to build Go binaries."; \
+		echo "Failed to build Go binaries."; \
 		exit 1; \
 	fi
 
